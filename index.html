@@ -59,27 +59,39 @@
       <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8 hn-center-wrapper">
           <form class="card card-sm hn-card">
-            <div class="hn-input-wrapper">
-              <!--end of col-->
-              <div class="col-sm-8">
-                <input
-                  class="hn-input"
-                  type="search"
-                  placeholder="Search by name or email"
-                  id="user_input"
-                />
+            <div class="hn-content-wrapper">
+              <div class="hn-input-wrapper">
+                <!--end of col-->
+                <div class="col-sm-6">
+                  <input
+                    class="hn-input"
+                    type="search"
+                    placeholder="Search by Name"
+                    id="user_input"
+                  />
+                </div>
+                <!--end of col-->
+                <div class="col-sm-6">
+                  <input
+                    class="hn-input"
+                    type="search"
+                    placeholder="Search By Email"
+                    id="user_email_input"
+                  />
+                </div>
               </div>
-              <!--end of col-->
-              <div class="col-sm-4">
-                <button
-                  class="btn btn-lg hn-button"
-                  type="button"
-                  onclick="clickSubmit()"
-                >
-                  Search
-                </button>
+              <div class="hn-submit-button-wrapper">
+                <div class="col-sm-4">
+                  <button
+                    class="btn btn-lg hn-button"
+                    type="button"
+                    onclick="clickSubmit()"
+                  >
+                    Search
+                  </button>
+                </div>
+                <!--end of col-->
               </div>
-              <!--end of col-->
             </div>
           </form>
         </div>
@@ -87,13 +99,17 @@
       </div>
     </div>
     <script type="text/javascript">
+
+      function validateEmail(email){
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+      }
       function clickSubmit() {
         var search_term = $("#user_input").val().trim();
-        console.log(search_term);
+        var sanEmail = $("#user_email_input").val().trim()
+        var validEmail = validateEmail(sanEmail);
         if (search_term) {
           var search_list = search_term.split(" ");
-          //Orbitly.io:
-          window.open(`https://app.orbitly.io/#/lookup?lookup=${search_term}`);
           //Google:
           window.open(`https://www.google.com/search?q=${search_term}`);
           //Linkedin:
@@ -116,6 +132,16 @@
           //Realtor
           window.open(
             `https://www.realtor.com/realestateagents/agentname-${search_term}`
+          );
+        }
+        if(validEmail){
+          //Orbitly.io:
+          window.open(`https://app.orbitly.io/#/lookup?lookup=${sanEmail}`);
+          //Google:
+          window.open(`https://www.google.com/search?q=${sanEmail}`);
+          //Zillow
+          window.open(
+            `https://www.zillow.com/agent-finder/real-estate-agent-reviews/?name=${sanEmail}&sortBy=None&showAdvancedItems=False`
           );
         }
       }
