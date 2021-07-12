@@ -63,21 +63,40 @@
               <div class="hn-input-wrapper">
                 <!--end of col-->
                 <div class="col-sm-6">
-                  <input
-                    class="hn-input"
-                    type="search"
-                    placeholder="Search by Name"
-                    id="user_input"
-                  />
+                  <div>
+                    <div class="hn-image-separator">
+                      <img src="images/google-icon.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Google" />
+                      <img src="images/linkedin.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Linkedin" />
+                      <img src="images/twitter.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Twitter" />
+                      <img src="images/zillow.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Zillow" />
+                      <img src="images/realtor.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Realtor" />
+                    </div>
+                    <div>
+                      <input
+                        class="hn-input"
+                        type="search"
+                        placeholder="Search By Name"
+                        id="user_input"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <!--end of col-->
                 <div class="col-sm-6">
-                  <input
-                    class="hn-input"
-                    type="search"
-                    placeholder="Search By Email"
-                    id="user_email_input"
-                  />
+                  <div>
+                    <div class="hn-image-separator">
+                      <img src="images/google-icon.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Google" />
+                      <img src="images/orbitly.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Orbitly" />
+                    </div>
+                    <div>
+                      <input
+                        class="hn-input"
+                        type="search"
+                        placeholder="Search By Email"
+                        id="user_email_input"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="hn-submit-button-wrapper">
@@ -112,6 +131,10 @@
           var search_list = search_term.split(" ");
           //Google:
           window.open(`https://www.google.com/search?q=${search_term}`);
+          //Google with Facebook:
+          window.open(`https://www.google.com/search?q=${search_term} facebook`);
+          //Google with Instagram:
+          window.open(`https://www.google.com/search?q=${search_term} instagram`);
           //Linkedin:
           if (search_list.length > 1)
             window.open(
@@ -133,16 +156,16 @@
           window.open(
             `https://www.realtor.com/realestateagents/agentname-${search_term}`
           );
+          if(validEmail){
+            //Google name and email:
+            window.open(`https://www.google.com/search?q=${search_term} ${sanEmail}`);
+          }
         }
         if(validEmail){
           //Orbitly.io:
           window.open(`https://app.orbitly.io/#/lookup?lookup=${sanEmail}`);
           //Google:
           window.open(`https://www.google.com/search?q=${sanEmail}`);
-          //Zillow
-          window.open(
-            `https://www.zillow.com/agent-finder/real-estate-agent-reviews/?name=${sanEmail}&sortBy=None&showAdvancedItems=False`
-          );
         }
       }
     </script>
