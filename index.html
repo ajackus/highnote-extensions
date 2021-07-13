@@ -58,7 +58,7 @@
       <br />
       <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8 hn-center-wrapper">
-          <form class="card card-sm hn-card">
+          <form class="card card-sm hn-card" id="searchForm">
             <div class="hn-content-wrapper">
               <div class="hn-input-wrapper">
                 <!--end of col-->
@@ -167,6 +167,7 @@
           //Google:
           window.open(`https://www.google.com/search?q=${sanEmail}`);
         }
+        document.getElementById("searchForm").reset();
       }
     </script>
   </body>
