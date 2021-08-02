@@ -118,14 +118,32 @@
       </div>
     </div>
     <script type="text/javascript">
+      $(document).ready( function () {
+        var searchParams = window.location.search.slice(1)
+        .split('&')
+        .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
+          b = b.split('=');
+          a[b[0]] = decodeURIComponent(b[1]);
+          return a;
+        }, {});
+        console.log(searchParams)
+        if(Object.keys(searchParams).includes('name')){
+          if(Object.keys(searchParams).includes('email'))
+            clickSubmit(searchParams['name'], searchParams['email'])
+          else clickSubmit(searchParams['name'])
+        }
+        else clickSubmit(undefined, searchParams['email'])
+      });
 
       function validateEmail(email){
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
       }
-      function clickSubmit() {
-        var search_term = $("#user_input").val().trim();
-        var sanEmail = $("#user_email_input").val().trim()
+      function clickSubmit(search_term, sanEmail) {
+        if(!search_term)
+          search_term = $("#user_input").val().trim();
+        if(!sanEmail)
+          sanEmail = $("#user_email_input").val().trim()
         var validEmail = validateEmail(sanEmail);
         if (search_term) {
           var search_list = search_term.split(" ");
