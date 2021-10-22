@@ -1,192 +1,192 @@
-<html>
-  <head>
-    <title>Lookup PoC</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- adding bootstrap.css and the needed styling -->
+        <title>HighNote Pricing</title>
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="styles.css"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script type="text/javascript">
-      window.alert = function () {};
-      var defaultCSS = document.getElementById("bootstrap-css");
-      function changeCSS(css) {
-        if (css)
-          $("head > link")
-            .filter(":first")
-            .replaceWith(
-              '<link rel="stylesheet" href="' + css + '" type="text/css" />'
-            );
-        else $("head > link").filter(":first").replaceWith(defaultCSS);
-      }
-    </script>
-  </head>
-  <body>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
-      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
-      crossorigin="anonymous"
-    />
-    <div class="container">
-      <br />
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-8 hn-center-wrapper">
-          <form class="card card-sm hn-card" id="searchForm">
-            <div class="hn-content-wrapper">
-              <div class="hn-input-wrapper">
-                <!--end of col-->
-                <div class="col-sm-6">
-                  <div>
-                    <div class="hn-image-separator">
-                      <img src="images/google-icon.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Google" />
-                      <img src="images/linkedin.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Linkedin" />
-                      <img src="images/twitter.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Twitter" />
-                      <img src="images/zillow.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Zillow" />
-                      <img src="images/realtor.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Realtor" />
-                    </div>
-                    <div>
-                      <input
-                        class="hn-input"
-                        type="search"
-                        placeholder="Search By Name"
-                        id="user_input"
-                      />
-                    </div>
-                  </div>
+        <!-- jQuery library -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!-- Adding HTML5.js -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
+        
+        
+        <script type="text/javascript" src="https://js.stripe.com/v3/">
+        </script>
+        
+        
+        <script type="text/javascript" src="http://malsup.github.io/jquery.form.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+        
+        
+        <!-- Setting the stripe publishable key.-->
+        <script>
+
+            jQuery.validator.setDefaults({
+                errorClass: "text-danger",
+                errorElement: "small"
+            });
+
+            // Replace with your own publishable key: https://dashboard.stripe.com/test/apikeys
+            var PUBLISHABLE_KEY = 'pk_test_51INXAGBz1bb2lqfxfi5wTT2TJvE53Shs91B5cEkGJrak7GPyfy4bTMJrrgcBnj3fi4H5fopwG55f8vRa9kL3iYIY00Ep7QDtah';
+            // Replace with the domain you want your users to be redirected back to after payment
+            var DOMAIN = location.href.replace(/[^/]*$/, '');
+      
+            if (PUBLISHABLE_KEY === 'pk_test_51INXAGBz1bb2lqfxfi5wTT2TJvE53Shs91B5cEkGJrak7GPyfy4bTMJrrgcBnj3fi4H5fopwG55f8vRa9kL3iYIY00Ep7QDtah') {
+              console.log(
+                'Replace the hardcoded publishable key with your own publishable key: https://dashboard.stripe.com/test/apikeys'
+              );
+            }
+      
+            var stripe = Stripe(PUBLISHABLE_KEY);
+      
+            // Handle any errors from Checkout
+            var handleResult = function (result) {
+              if (result.error) {
+                var displayError = document.getElementById('error-message');
+                displayError.textContent = result.error.message;
+              }
+            };
+
+            $(document).ready(function() {
+
+                $("#subscribe-form").validate({
+                    rules: {
+                        first_name: "required",
+                        last_name: "required",
+                        custom_info: 'required',
+                        email: {
+                            required: true,
+                            // Specify that email should be validated
+                            // by the built-in "email" rule
+                            email: true
+                        }
+                    }
+                });
+
+                function formValidationCheck(form) {
+                    // Checking form has passed the validation.
+                    if (!$(form).valid()) {
+                        return false;
+                    }
+                    $(".alert-danger").hide();
+                    $('.subscribe_process').show();
+                }
+                $("#subscribe-form").on('submit', function(e) {
+                    // form validation
+                    formValidationCheck(this);
+                    if(!$(this).valid()){
+                        return false;
+                    }
+                    e.preventDefault();
+                    var priceId = 'price_1JluHmBz1bb2lqfxfkcemXMO';
+                    var items = [{ price: 'subscription', quantity: 1 }];
+                    var highnote_heard_from = document.getElementById("custom_info").value;
+                    var email = document.getElementById("email").value;
+                    var first_name = document.getElementById("first_name").value;
+                    var last_name = document.getElementById("last_name").value;
+                    var referral = new URLSearchParams(location.search).get('REFERRALCODE')
+                    let baseBackendURL = 'http://54.219.68.186/api/v1/get-checkout-session'
+                    baseBackendURL = `${baseBackendURL}?first_name=${first_name}&last_name=${last_name}&email=${email}&highnote_heard_from=${highnote_heard_from}`
+                    if(referral) baseBackendURL = `${baseBackendURL}&referral_code=${referral}`
+                    fetch(baseBackendURL,{
+                      method: 'GET',
+                      headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Bearer sk_test_51INXAGBz1bb2lqfxeSOTJkBHTV9hNfj8W0vLP8wtZArCplgFTMY1yjjuFNLfNsn0upvjzyIpRjmJ2G2KbN7mYSjU00QN4fhUhX'
+                      }
+                    }).then(function(response){
+                      return response.json();
+                    }).then(function(session){
+                      return stripe.redirectToCheckout({ sessionId: session.id });
+                    }).then(handleResult)
+                })
+            })
+
+        </script>
+    </head>
+    <body>
+        <div class="navbar navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">          
+                    <div class="h1"></div>
                 </div>
-                <!--end of col-->
-                <div class="col-sm-6">
-                  <div>
-                    <div class="hn-image-separator">
-                      <img src="images/google-icon.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Google" />
-                      <img src="images/orbitly.png" width="20px" height="20px" data-toggle="tooltip" data-placement="top" title="Orbitly" />
-                    </div>
-                    <div>
-                      <input
-                        class="hn-input"
-                        type="search"
-                        placeholder="Search By Email"
-                        id="user_email_input"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="hn-submit-button-wrapper">
-                <div class="col-sm-4">
-                  <button
-                    class="btn btn-lg hn-button"
-                    type="button"
-                    onclick="clickSubmit()"
-                  >
-                    Search
-                  </button>
-                </div>
-                <!--end of col-->
-              </div>
             </div>
-          </form>
         </div>
-        <!--end of col-->
-      </div>
-    </div>
-    <script type="text/javascript">
-      $(document).ready( function () {
-        var searchParams = window.location.search.slice(1)
-        .split('&')
-        .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
-          b = b.split('=');
-          a[b[0]] = decodeURIComponent(b[1]);
-          return a;
-        }, {});
-        console.log(searchParams)
-        if(Object.keys(searchParams).includes('name')){
-          if(Object.keys(searchParams).includes('email'))
-            clickSubmit(searchParams['name'], searchParams['email'])
-          else clickSubmit(searchParams['name'])
-        }
-        else clickSubmit(undefined, searchParams['email'])
-      });
+        <div id="container" class="checkout container">                        
 
-      function validateEmail(email){
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-      }
-      function clickSubmit(search_term, sanEmail) {
-        if(!search_term)
-          search_term = $("#user_input").val().trim();
-        if(!sanEmail)
-          sanEmail = $("#user_email_input").val().trim()
-        var validEmail = validateEmail(sanEmail);
-        if (search_term) {
-          var search_list = search_term.split(" ");
-          //Google:
-          window.open(`https://www.google.com/search?q=${search_term}`);
-          //Google with Facebook:
-          window.open(`https://www.google.com/search?q=${search_term} facebook`);
-          //Google with Instagram:
-          window.open(`https://www.google.com/search?q=${search_term} instagram`);
-          //Linkedin:
-          if (search_list.length > 1)
-            window.open(
-              `https://in.linkedin.com/pub/dir?firstName=${search_list[0]}&lastName=${search_list[1]}&trk=people-guest_people-search-bar_search-submit`
-            );
-          else
-            window.open(
-              `https://in.linkedin.com/pub/dir?firstName=${search_list[0]}&lastName=&trk=people-guest_people-search-bar_search-submit`
-            );
-          //Twitter
-          window.open(
-            `https://twitter.com/search?q=${search_term}&src=typed_query&f=user`
-          );
-          //Zillow
-          window.open(
-            `https://www.zillow.com/agent-finder/real-estate-agent-reviews/?name=${search_term}&sortBy=None&showAdvancedItems=False`
-          );
-          //Realtor
-          window.open(
-            `https://www.realtor.com/realestateagents/agentname-${search_term}`
-          );
-          if(validEmail){
-            //Google name and email:
-            window.open(`https://www.google.com/search?q=${search_term} ${sanEmail}`);
-          }
-        }
-        if(validEmail){
-          //Orbitly.io:
-          window.open(`https://app.orbitly.io/#/lookup?lookup=${sanEmail}`);
-          //Google:
-          window.open(`https://www.google.com/search?q=${sanEmail}`);
-        }
-        document.getElementById("searchForm").reset();
-      }
-    </script>
-  </body>
+            <div class="row">		
+                <div class="col-sm-7" id="checkout_info">   
+                    <form id="subscribe-form">
+                        <!-- Add the needed fields in the form-->
+                        <h3 class="page-header">Basic Information</h3>
+                        <div class="row">                   
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="customer[email]">Email</label>
+                                    <input id="email" type="text"
+                                        class="form-control"
+                                        name="customer[email]"
+                                        maxlength=50
+                                        data-rule-required="true" data-rule-email="true" 
+                                        data-msg-required="Please enter your email address" 
+                                        data-msg-email="Please enter a valid email address"
+                                    >
+                                    <small for="customer[email]" class="text-danger"></small>
+                                </div>
+                            </div>                   
+                        </div>
+                        <div class="row">                   
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="customer[first_name]">First Name</label>
+                                    <input id='first_name' type="text" class="form-control" name="customer[first_name]" 
+                                        maxlength=50 required data-msg-required="Cannot be blank"
+                                    >
+                                    <small for="customer[first_name]" class="text-danger"></small>
+                                </div>
+                            </div>                   
+                        </div>
+                        <div class="row">                   
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="customer[last_name]">Last Name</label>
+                                    <input id='last_name' type="text" class="form-control" name="customer[last_name]"
+                                        maxlength=50 required data-msg-required="Cannot be blank"
+                                    >
+                                    <small for="customer[last_name]" class="text-danger"></small>
+                                </div>
+                            </div>                   
+                        </div>
+                        <div class="row">                   
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="customer[custom_info]">How did you hear about HighNote?</label>
+                                    <input id="custom_info" type="text"
+                                        class="form-control"
+                                        name="customer[custom_info]"
+                                        maxlength=50
+                                        required data-msg-required="Cannot be blank"
+                                    >
+                                    <small for="customer[custom_info]" class="text-danger"></small>
+                                </div>
+                            </div>                   
+                        </div>
+                        <p><input type="submit" class="btn btn-success btn-lg pull-left" value="Subscribe Now for 299.88/year">&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="subscribe_process process" style="display:none;">Processing&hellip;</span>
+                            <small class="alert-danger text-danger"></small>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </body>
 </html>
