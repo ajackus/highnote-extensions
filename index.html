@@ -21,8 +21,8 @@
         </script>
         
         
-        <script type="text/javascript" src="http://malsup.github.io/jquery.form.js"></script>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://malsup.github.io/jquery.form.js"></script>
+        <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js"></script>
         
         
         <!-- Setting the stripe publishable key.-->
@@ -128,7 +128,7 @@
                         <!-- Add the needed fields in the form-->
                         <h3 class="page-header">Basic Information</h3>
                         <div class="row">                   
-                            <div class="col-sm-8">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="customer[email]">Email</label>
                                     <input id="email" type="text"
@@ -144,7 +144,7 @@
                             </div>                   
                         </div>
                         <div class="row">                   
-                            <div class="col-sm-8">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="customer[first_name]">First Name</label>
                                     <input id='first_name' type="text" class="form-control" name="customer[first_name]" 
@@ -155,7 +155,7 @@
                             </div>                   
                         </div>
                         <div class="row">                   
-                            <div class="col-sm-8">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="customer[last_name]">Last Name</label>
                                     <input id='last_name' type="text" class="form-control" name="customer[last_name]"
@@ -166,7 +166,7 @@
                             </div>                   
                         </div>
                         <div class="row">                   
-                            <div class="col-sm-8">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="customer[custom_info]">How did you hear about HighNote?</label>
                                     <input id="custom_info" type="text"
@@ -179,10 +179,11 @@
                                 </div>
                             </div>                   
                         </div>
-                        <p><input type="submit" class="btn btn-success btn-lg pull-left" value="Subscribe Now for 299.88/year">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="row">
+                            <input type="submit" class="btn btn-success btn-lg" value="Subscribe Now for 299.88/year">&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="subscribe_process process" style="display:none;">Processing&hellip;</span>
                             <small class="alert-danger text-danger"></small>
-                        </p>
+                        </div>
                     </form>
                 </div>
             </div>
