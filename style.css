@@ -162,6 +162,7 @@ label.success{
     background-color: #e82f72 !important;
 	border-color: #e82f72 !important;
 	font-size: 16px !important;
+	width: 100%;
 }
 .cb-spacing-bottom{
     margin-bottom: 180px;
@@ -202,10 +203,5 @@ label.success{
 }
 .comic-book img{
 	margin-top:-160px;
-}
-.submit_button{
-	display: flex;
-	flex-direction: row;
-    justify-content: center;
 }
 }
